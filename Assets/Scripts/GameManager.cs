@@ -21,7 +21,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        Instantiate(currentFlip, Vector3.zero, Quaternion.identity);
+        Instantiate(currentFlip, new Vector3(2.56f, -0.87f), Quaternion.identity);
     }
 
     // Update is called once per frame
