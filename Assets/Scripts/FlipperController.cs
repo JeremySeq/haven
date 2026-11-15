@@ -13,11 +13,13 @@ public class FlipperController : MonoBehaviour
 
     private const float maxDegreesPerSecond = 260f;
 
+    public Rigidbody2D rb;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
@@ -25,22 +27,22 @@ public class FlipperController : MonoBehaviour
     {
         if (Mouse.current != null && Mouse.current.leftButton.isPressed && currentDegrees <= maxDegrees)
         {
-            degreesPerSecond = Mathf.Lerp(degreesPerSecond, maxDegreesPerSecond, 140*Time.deltaTime);
-            //this.transform.rotation = Quaternion.Euler(0, 0, 45);
+            degreesPerSecond = Mathf.Lerp(degreesPerSecond, maxDegreesPerSecond, 140 * Time.deltaTime);
             float degreesToAdd = degreesPerSecond * Time.deltaTime;
-            if (currentDegrees + degreesToAdd > maxDegrees) {
+            if (currentDegrees + degreesToAdd > maxDegrees)
+            {
                 degreesToAdd = maxDegrees - currentDegrees;
             }
 
             currentDegrees += degreesToAdd;
-            this.transform.RotateAround(pivotPoint.position, rotationAxis, -degreesToAdd);
+            rb.MoveRotation(currentDegrees-25);
         } else
         {
             // slowly drop, linear
             if (currentDegrees > 0)
             {
-                this.transform.RotateAround(pivotPoint.position, rotationAxis, maxDegreesPerSecond * Time.deltaTime);
                 currentDegrees -= maxDegreesPerSecond * Time.deltaTime;
+                rb.MoveRotation(currentDegrees-25);
             }
         }
     }
