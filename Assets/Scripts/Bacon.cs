@@ -9,7 +9,7 @@ public class Bacon : MonoBehaviour
     private float pauseTimer;
     private bool needsResume;
 
-    public int lives = 3;
+    public int lives = 5;
 
     private Transform[] children;
     private Vector2[] startPositions;
@@ -17,7 +17,7 @@ public class Bacon : MonoBehaviour
 
     void Start()
     {
-        lives = 3;
+        lives = 5;
         children = GetComponentsInChildren<Transform>();
         Array.Resize(ref startPositions, children.Length);
         Array.Resize(ref startRotations, children.Length);
