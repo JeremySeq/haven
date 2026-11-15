@@ -7,9 +7,10 @@ public class FlipperController : MonoBehaviour
     public Transform pivotPoint;
     private Vector3 rotationAxis = Vector3.back;
     private float currentDegrees = 0f;
-    private const float maxDegrees = 30f;
+    //private const float maxDegrees = 30f;
 
-    private float degreesPerSecond = 0f;
+    private const float maxDegrees = 5f;
+    private const float minDegrees = -25f;
 
     private const float maxDegreesPerSecond = 260f;
 
@@ -23,26 +24,20 @@ public class FlipperController : MonoBehaviour
     }
 
     // Update is called once per frame
-    void Update()
+    void FixedUpdate()
     {
         if (Mouse.current != null && Mouse.current.leftButton.isPressed && currentDegrees <= maxDegrees)
         {
-            degreesPerSecond = Mathf.Lerp(degreesPerSecond, maxDegreesPerSecond, 140 * Time.deltaTime);
-            float degreesToAdd = degreesPerSecond * Time.deltaTime;
-            if (currentDegrees + degreesToAdd > maxDegrees)
-            {
-                degreesToAdd = maxDegrees - currentDegrees;
-            }
+            currentDegrees = (currentDegrees * 2 + maxDegrees) / 3;
 
-            currentDegrees += degreesToAdd;
-            rb.MoveRotation(currentDegrees-25);
+            rb.MoveRotation(currentDegrees);
         } else
         {
             // slowly drop, linear
-            if (currentDegrees > 0)
+            if (currentDegrees > minDegrees)
             {
                 currentDegrees -= maxDegreesPerSecond * Time.deltaTime;
-                rb.MoveRotation(currentDegrees-25);
+                rb.MoveRotation(currentDegrees);
             }
         }
     }
