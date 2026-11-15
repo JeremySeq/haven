@@ -109,7 +109,7 @@ MonoBehaviour:
   Title: House
   Price: 8000
   Profit: 6000
-  Image: {fileID: 0}
+  Image: {fileID: 2800000, guid: 59b148ab6dc93d62989eba4ec633a232, type: 3}
 --- !u!60 &1598485620893988259
 PolygonCollider2D:
   m_ObjectHideFlags: 0
