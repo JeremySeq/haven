@@ -9,10 +9,9 @@ public class FlipperController : MonoBehaviour
     private float currentDegrees = 0f;
     private const float maxDegrees = 30f;
 
-
     private float degreesPerSecond = 0f;
 
-    private const float maxDegreesPerSecond = 160f;
+    private const float maxDegreesPerSecond = 260f;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,13 +23,17 @@ public class FlipperController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Mouse.current != null && Mouse.current.leftButton.isPressed && currentDegrees < maxDegrees)
+        if (Mouse.current != null && Mouse.current.leftButton.isPressed && currentDegrees <= maxDegrees)
         {
-            Debug.Log("mouse pressed");
-            degreesPerSecond = Mathf.Lerp(degreesPerSecond, maxDegreesPerSecond, 15*Time.deltaTime);
+            degreesPerSecond = Mathf.Lerp(degreesPerSecond, maxDegreesPerSecond, 140*Time.deltaTime);
             //this.transform.rotation = Quaternion.Euler(0, 0, 45);
-            this.transform.RotateAround(pivotPoint.position, rotationAxis, -degreesPerSecond * Time.deltaTime);
-            currentDegrees += degreesPerSecond * Time.deltaTime;
+            float degreesToAdd = degreesPerSecond * Time.deltaTime;
+            if (currentDegrees + degreesToAdd > maxDegrees) {
+                degreesToAdd = maxDegrees - currentDegrees;
+            }
+
+            currentDegrees += degreesToAdd;
+            this.transform.RotateAround(pivotPoint.position, rotationAxis, -degreesToAdd);
         } else
         {
             // slowly drop, linear
