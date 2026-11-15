@@ -52,7 +52,10 @@ public class Bacon : MonoBehaviour
                 if (lives <= 0)
                 {
                     GameManager.INSTANCE.cash -= GameManager.INSTANCE.currentFlip.GetComponent<Item>().Price;
-                    SceneManager.LoadScene("SelectionScreen");
+                    if (GameManager.INSTANCE.cash <= 0)
+                        SceneManager.LoadScene("EndScene");
+                    else
+                        SceneManager.LoadScene("SelectionScreen");
                 }
                 // TODO DIE
                 // LOSE LIFE OR MONEY
@@ -60,7 +63,7 @@ public class Bacon : MonoBehaviour
             else if (CheckWin())
             {
                 Debug.Log("WIN!!!!");
-                GameManager.INSTANCE.cash += GameManager.INSTANCE.currentFlip.GetComponent<Item>().Profit;
+                GameManager.INSTANCE.cash += GameManager.INSTANCE.currentFlip.GetComponent<Item>().Profit;                
                 SceneManager.LoadScene("SelectionScreen");
 
                 // TODO WIN

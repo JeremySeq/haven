@@ -461,7 +461,7 @@ MonoBehaviour:
   - {fileID: 3753228161420624205, guid: e7aedfcf7109cf84d8e628eefccb4ea1, type: 3}
   - {fileID: 8026821131769002842, guid: 377d9aadd95ca5444aa678a4f738d327, type: 3}
   - {fileID: 8928883896863083088, guid: 9a8bc262b85d3484399dd89c7c40bc85, type: 3}
-  - {fileID: 4666581224608885734, guid: 128ca024daf0b434c98285aee89b4c84, type: 3}
+  - {fileID: 223189520477891223, guid: d379e09da30f4a1849380acb84bdf7fe, type: 3}
 --- !u!1 &343018973
 GameObject:
   m_ObjectHideFlags: 0
@@ -1136,7 +1136,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31084a1d4b14354b8836450c19c3556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
-  cash: 100000
+  cash: 1200
   currentFlip: {fileID: 0}
 --- !u!1 &2143865476
 GameObject:
