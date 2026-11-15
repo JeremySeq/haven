@@ -259,6 +259,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bacon
   minimumY: -10
+  lives: 3
 --- !u!1 &25695986
 GameObject:
   m_ObjectHideFlags: 0
@@ -2501,7 +2502,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a31084a1d4b14354b8836450c19c3556, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
-  cash: 500
+  cash: 500000
   currentFlip: {fileID: 3753228161420624205, guid: e7aedfcf7109cf84d8e628eefccb4ea1, type: 3}
 --- !u!1001 &5598643752012350720
 PrefabInstance:

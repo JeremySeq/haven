@@ -9,12 +9,15 @@ public class Bacon : MonoBehaviour
     private float pauseTimer;
     private bool needsResume;
 
+    public int lives = 3;
+
     private Transform[] children;
     private Vector2[] startPositions;
     private float[] startRotations;
 
     void Start()
     {
+        lives = 3;
         children = GetComponentsInChildren<Transform>();
         Array.Resize(ref startPositions, children.Length);
         Array.Resize(ref startRotations, children.Length);
@@ -28,12 +31,11 @@ public class Bacon : MonoBehaviour
             startRotations[i] = rb.rotation;
         }
 
-        pauseTimer = 2.0f;
+        pauseTimer = 1.0f;
     }
 
     void Update()
     {
-        Debug.Log(pauseTimer);
         if (pauseTimer >= 0.0f)
         {
             PausePhysics();
@@ -45,12 +47,22 @@ public class Bacon : MonoBehaviour
             if (CheckDeath())
             {
                 Reset();
+                lives -= 1;
+                Debug.Log(lives);
+                if (lives <= 0)
+                {
+                    GameManager.INSTANCE.cash -= GameManager.INSTANCE.currentFlip.GetComponent<Item>().Price;
+                    SceneManager.LoadScene("SelectionScreen");
+                }
                 // TODO DIE
                 // LOSE LIFE OR MONEY
             }
             else if (CheckWin())
             {
                 Debug.Log("WIN!!!!");
+                GameManager.INSTANCE.cash += GameManager.INSTANCE.currentFlip.GetComponent<Item>().Profit;
+                SceneManager.LoadScene("SelectionScreen");
+
                 // TODO WIN
                 // GAIN MONEY
             }
@@ -81,7 +93,7 @@ public class Bacon : MonoBehaviour
 
         average /= n;
         averageAngular /= n;
-        Debug.Log(average.magnitude);
+        // Debug.Log(average.magnitude);
         return average.magnitude < 1.0f && averageAngular < 1.0f && transform.GetChild(0).position.x > -2.0f;
     }
 
