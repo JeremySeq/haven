@@ -6,7 +6,7 @@ public class GameManager : MonoBehaviour
     public static GameManager INSTANCE = null;
 
     public int cash = 500;
-    public UIController.FlipOption currentFlip;
+    public GameObject currentFlip;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()

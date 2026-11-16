@@ -17,12 +17,14 @@ public class UIController : MonoBehaviour
     }
 
 
-    public List<FlipOption> flipOptions = new List<FlipOption>
-    {
-        new FlipOption { Title = "Option 1", Price = 10, Profit = 5, Image = null },
-        new FlipOption { Title = "Option 2", Price = 20, Profit = 10, Image = null },
-        new FlipOption { Title = "Option 3", Price = 30, Profit = 15, Image = null }
-    };
+    //public List<FlipOption> flipOptions = new List<FlipOption>
+    //{
+    //    new FlipOption { Title = "Option 1", Price = 10, Profit = 5, Image = null },
+    //    new FlipOption { Title = "Option 2", Price = 20, Profit = 10, Image = null },
+    //    new FlipOption { Title = "Option 3", Price = 30, Profit = 15, Image = null }
+    //};
+
+    public List<GameObject> flipOptions = new List<GameObject>();
 
     public void Shuffle<T>(IList<T> list)
     {
@@ -38,8 +40,8 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        List<FlipOption> currentOptions = new List<FlipOption>(flipOptions);
-        currentOptions.RemoveAll(option => option.Price > GameManager.INSTANCE.cash);
+        List<GameObject> currentOptions = new List<GameObject>(flipOptions);
+        currentOptions.RemoveAll(option => option.GetComponent<Item>().Price > GameManager.INSTANCE.cash);
         Shuffle(currentOptions);
         int i = 0;
         foreach (GameObject panel in panels)
@@ -53,11 +55,11 @@ public class UIController : MonoBehaviour
                 panel.SetActive(false);
                 continue;
             }
-            FlipOption option = currentOptions[i];
-            panel.transform.Find("Title")?.GetComponent<TextMeshProUGUI>()?.SetText(option.Title);
-            panel.transform.Find("Price")?.GetComponent<TextMeshProUGUI>()?.SetText("$" + option.Price.ToString());
-            panel.transform.Find("Profit")?.GetComponent<TextMeshProUGUI>()?.SetText("$" + option.Profit.ToString());
-            panel.transform.Find("Image").GetComponent<UnityEngine.UI.RawImage>().texture = option.Image;
+            GameObject option = currentOptions[i];
+            panel.transform.Find("Title")?.GetComponent<TextMeshProUGUI>()?.SetText(option.GetComponent<Item>().Title);
+            panel.transform.Find("Price")?.GetComponent<TextMeshProUGUI>()?.SetText("$" + option.GetComponent<Item>().Price.ToString());
+            panel.transform.Find("Profit")?.GetComponent<TextMeshProUGUI>()?.SetText("$" + option.GetComponent<Item>().Profit.ToString());
+            panel.transform.Find("Image").GetComponent<UnityEngine.UI.RawImage>().texture = option.GetComponent<Item>().Image;
             i++;
         }
     }
@@ -66,5 +68,25 @@ public class UIController : MonoBehaviour
     void Update()
     {
         
+    }
+
+    public void Select1()
+    {
+        GameManager.INSTANCE.currentFlip = panels[0];
+    }
+
+    public void Select2()
+    {
+        GameManager.INSTANCE.currentFlip = panels[1];
+    }
+
+    public void Select3()
+    {
+        GameManager.INSTANCE.currentFlip = panels[2];
+    }
+
+    public void Select4()
+    {
+        GameManager.INSTANCE.currentFlip = panels[3];
     }
 }
