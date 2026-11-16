@@ -22,7 +22,7 @@ public class FlipperController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-
+        Instantiate(GameManager.INSTANCE.currentFlip, GameManager.INSTANCE.currentFlip.transform.position, GameManager.INSTANCE.currentFlip.transform.rotation);
     }
 
     // Update is called once per frame

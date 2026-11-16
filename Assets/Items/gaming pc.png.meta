@@ -116,10 +116,10 @@ TextureImporter:
       name: gaming pc_0
       rect:
         serializedVersion: 2
-        x: 135
-        y: 135
-        width: 710
-        height: 710
+        x: 18
+        y: 14
+        width: 374
+        height: 450
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
