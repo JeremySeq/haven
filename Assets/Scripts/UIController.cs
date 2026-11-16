@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using TMPro;
 using Unity.Mathematics;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class UIController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class UIController : MonoBehaviour
         public int Profit;
         public Texture2D Image;
     }
+
+    private List<GameObject> currentOptions;
 
 
     //public List<FlipOption> flipOptions = new List<FlipOption>
@@ -40,7 +43,7 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        List<GameObject> currentOptions = new List<GameObject>(flipOptions);
+        currentOptions = new List<GameObject>(flipOptions);
         currentOptions.RemoveAll(option => option.GetComponent<Item>().Price > GameManager.INSTANCE.cash);
         Shuffle(currentOptions);
         int i = 0;
@@ -72,21 +75,25 @@ public class UIController : MonoBehaviour
 
     public void Select1()
     {
-        GameManager.INSTANCE.currentFlip = panels[0];
+        GameManager.INSTANCE.currentFlip = currentOptions[0];
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Select2()
     {
-        GameManager.INSTANCE.currentFlip = panels[1];
+        GameManager.INSTANCE.currentFlip = currentOptions[1];
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Select3()
     {
-        GameManager.INSTANCE.currentFlip = panels[2];
+        GameManager.INSTANCE.currentFlip = currentOptions[2];
+        SceneManager.LoadScene("SampleScene");
     }
 
     public void Select4()
     {
-        GameManager.INSTANCE.currentFlip = panels[3];
+        GameManager.INSTANCE.currentFlip = currentOptions[3];
+        SceneManager.LoadScene("SampleScene");
     }
 }
